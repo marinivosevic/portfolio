@@ -5,6 +5,8 @@ import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import * as image from "@/constants/images";
 import Image from "next/image";
+import FeaturedProjects from "@/components/FeaturedProjects";
+import AllProjects from "@/components/AllProjects";
 
 export default function Home() {
   const vantaRef = useRef<HTMLDivElement>(null);
@@ -62,7 +64,7 @@ export default function Home() {
           <div className="w-full max-w-7xl px-4 text-white">
             <Navbar />
             <div className="flex flex-row justify-between items-center w-full">
-              <div className="text-left max-w-2xl">
+              <div className="md:text-left max-w-2xl text-center">
                 <h1 className="text-accent text-lg">Software Engineer</h1>
                 <h1 className="text-6xl font-bold">Marin Ivošević</h1>
                 <p className="text-lg text-gray-300 mt-4">
@@ -72,7 +74,7 @@ export default function Home() {
                   Contact Me
                 </button>
               </div>
-              <div className="flex-shrink-0">
+              <div className="flex-shrink-0 hidden md:block">
                 <Image
                   src={image.heroImage}
                   alt="Marin Ivošević"
@@ -175,47 +177,12 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="min-h-screen p-8 flex items-center bg-transparent">
-          <div className="max-w-7xl mx-auto text-white grid grid-cols-1 md:grid-cols-3 gap-12">
-            {/* Left Column - Image and Social Icons */}
-            <div className="flex flex-col items-center  space-y-6">
-              {/* Profile Image */}
-              <div className="relative">
-                <Image
-                  src={image.avatarImage}
-                  alt="Marin Ivošević"
-                  width={250}
-                  height={250}
-                  className="rounded-full border-4 border-accent"
-                />
-              </div>
 
-              
-              
-            </div>
-
-            {/* Right Column - About Me Text */}
-            <div className="md:col-span-2">
-              <h2 className="text-4xl font-bold mb-8 text-accent">About Me</h2>
-              <div className="space-y-4 text-lg">
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry&apos;s
-                  standard dummy text ever since the 1500s.
-                </p>
-                <p>
-                  It has survived not only five centuries, but also the leap
-                  into electronic typesetting, remaining essentially unchanged.
-                  It was popularised in the 1960s.
-                </p>
-                <p>
-                  With the release of Letraset sheets containing Lorem Ipsum
-                  passages, and more recently with desktop publishing software
-                  like Aldus PageMaker including versions.
-                </p>
-              </div>
-            </div>
-          </div>
+        <section>
+          <FeaturedProjects />
+        </section>
+        <section>
+          <AllProjects />
         </section>
       </div>
     </>
