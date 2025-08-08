@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
-
+import Link from "next/link";
 import Image from "next/image";
 import * as images from "@/constants/images";
 const projects = [
@@ -156,12 +156,14 @@ export default function FeaturedProjects() {
 
                 {/* View All Projects Button */}
                 <div className="text-center mt-16">
-                    <Button
-                        size="lg"
-                        className="bg-accent text-black hover:bg-portfolio-accent-glow font-semibold px-8 py-3 transition-all duration-300 hover:scale-105 shadow-[0_0_40px_hsl(179,100%,75%,0.3)]"
-                    >
-                        View All Projects
-                    </Button>
+                    <Link href="#allProjects" className="inline-block cursor-pointer">
+                        <Button
+                            size="lg"
+                            className="bg-accent cursor-pointer text-black hover:bg-portfolio-accent-glow font-semibold px-8 py-3 transition-all duration-300 hover:scale-105 shadow-[0_0_40px_hsl(179,100%,75%,0.3)]"
+                        >
+                            View All Projects
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </section>

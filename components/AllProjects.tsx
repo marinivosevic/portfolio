@@ -201,7 +201,7 @@ export default function AllProjects() {
                     {allProjects.map((project) => (
                         <Card
                             key={project.id}
-                            className="overflow-hidden bg-[linear-gradient(145deg,hsl(240,10%,8%),hsl(240,10%,10%))] border-[hsl(200,5%,22%)] shadow-card transition-all duration-300 hover:shadow-elevated hover:bg-card-hover hover:border-portfolio-accent/20 hover:-translate-y-2 cursor-pointer group"
+                            className="overflow-hidden bg-[linear-gradient(145deg,hsl(240,10%,8%),hsl(240,10%,10%))] border-[hsl(200,5%,22%)] shadow-card transition-all duration-300 hover:shadow-elevated hover:bg-card-hover hover:border-accent/80 hover:-translate-y-2 cursor-pointer group"
                             onClick={() => handleProjectClick(project)}
                         >
                             {/* Project Image */}

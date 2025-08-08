@@ -7,11 +7,27 @@ import * as image from "@/constants/images";
 import Image from "next/image";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import AllProjects from "@/components/AllProjects";
-
+import Contact from "@/components/Contact";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+declare global {
+  interface Window {
+    VANTA: any;
+  }
+}
+gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   const vantaRef = useRef<HTMLDivElement>(null);
   const vantaEffect = useRef<any>(null);
-
+  const heroRef = useRef<HTMLDivElement>(null);
+  const leftContentRef = useRef<HTMLDivElement>(null);
+  const rightImageRef = useRef<HTMLDivElement>(null);
+  const aboutSectionRef = useRef<HTMLDivElement>(null);
+  const avatarRef = useRef<HTMLDivElement>(null);
+  const nameRef = useRef<HTMLHeadingElement>(null);
+  const socialIconsRef = useRef<HTMLDivElement>(null);
+  const aboutTitleRef = useRef<HTMLHeadingElement>(null);
+  const aboutTextRefs = useRef<(HTMLParagraphElement | null)[]>([]);
   useEffect(() => {
     const interval = setInterval(() => {
       if (window.VANTA?.DOTS && vantaRef.current) {
@@ -43,6 +59,129 @@ export default function Home() {
     };
   }, []);
 
+
+  useEffect(() => {
+    // Ensure elements exist
+    if (!heroRef.current || !leftContentRef.current || !rightImageRef.current) return;
+
+    // Set initial state (hidden)
+    gsap.set([leftContentRef.current, rightImageRef.current], {
+      y: 100,
+      opacity: 0
+    });
+
+    // Create the animation timeline
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    // Animate left content
+    tl.to(leftContentRef.current, {
+      y: 0,
+      opacity: 1,
+      duration: 1.2
+    });
+
+    // Animate right image with a slight delay
+    tl.to(rightImageRef.current, {
+      y: 0,
+      opacity: 1,
+      duration: 1.2
+    }, "-=0.8"); // Starts 0.8s before the previous animation ends
+
+    // Optional: Add a subtle scale effect to the image
+    tl.fromTo(rightImageRef.current.querySelector('img'),
+      { scale: 0.9 },
+      { scale: 1, duration: 1, ease: "elastic.out(1, 0.5)" },
+      "-=0.5"
+    );
+
+    // Optional: Stagger animation for text elements
+    const textElements = leftContentRef.current.querySelectorAll('h1, p, button');
+    gsap.from(textElements, {
+      y: 20,
+      opacity: 0,
+      stagger: 0.15,
+      delay: 0.5,
+      duration: 0.8,
+      ease: "back.out(1.2)"
+    });
+
+  }, []);
+  useEffect(() => {
+
+
+    // Set initial state (hidden)
+    gsap.set(
+      [avatarRef.current, nameRef.current, socialIconsRef.current, aboutTitleRef.current, ...aboutTextRefs.current],
+      { y: 50, opacity: 0 }
+    );
+
+    // Left column animations
+    gsap.to(avatarRef.current, {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      duration: 1,
+      ease: "back.out(1.7)",
+      scrollTrigger: {
+        trigger: avatarRef.current,
+        start: "top 80%",
+      }
+    });
+
+    gsap.to(nameRef.current, {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      scrollTrigger: {
+        trigger: nameRef.current,
+        start: "top 80%",
+      }
+    });
+
+    gsap.to(socialIconsRef.current, {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      scrollTrigger: {
+        trigger: socialIconsRef.current,
+        start: "top 80%",
+      }
+    });
+
+    // Right column animations
+    gsap.to(aboutTitleRef.current, {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: "elastic.out(1, 0.5)",
+      scrollTrigger: {
+        trigger: aboutTitleRef.current,
+        start: "top 80%",
+      }
+    });
+
+    // Paragraph animations with stagger
+    aboutTextRefs.current.forEach((textRef, index) => {
+      if (!textRef) return;
+
+      gsap.to(textRef, {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        delay: index * 0.1,
+        scrollTrigger: {
+          trigger: textRef,
+          start: "top 90%",
+        }
+      });
+    });
+
+    // Cleanup
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
   return (
     <>
       <Script
@@ -60,21 +199,24 @@ export default function Home() {
       {/* Scrollable Content (everything scrolls over the fixed background) */}
       <div className="relative z-10">
         {/* Hero Section */}
-        <section className="min-h-screen flex items-center justify-center pt-20">
+        <section ref={heroRef} className="min-h-screen flex items-center justify-center pt-20">
           <div className="w-full max-w-7xl px-4 text-white">
             <Navbar />
             <div className="flex flex-row justify-between items-center w-full">
-              <div className="md:text-left max-w-2xl text-center">
+              {/* Left Content */}
+              <div ref={leftContentRef} className="md:text-left max-w-2xl text-center">
                 <h1 className="text-accent text-lg">Software Engineer</h1>
                 <h1 className="text-6xl font-bold">Marin Ivošević</h1>
                 <p className="text-lg text-gray-300 mt-4">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit...
                 </p>
-                <button className="mt-8 px-6 py-2 border-2 border-accent text-white rounded-full hover:bg-gray-700 transition-colors">
+                <button className="mt-8 px-6 py-2 bg-accent shadow-glow text-black rounded-full hover:bg-accent/80 transition-colors duration-300">
                   Contact Me
                 </button>
               </div>
-              <div className="flex-shrink-0 hidden md:block">
+
+              {/* Right Image */}
+              <div ref={rightImageRef} className="flex-shrink-0 hidden md:block">
                 <Image
                   src={image.heroImage}
                   alt="Marin Ivošević"
@@ -88,26 +230,30 @@ export default function Home() {
         </section>
 
         {/* About Section (content scrolls over fixed background) */}
-        <section className="min-h-screen p-8 flex items-center bg-transparent">
+        <section
+          ref={aboutSectionRef}
+          id="about"
+          className="min-h-screen p-8 flex items-center bg-transparent"
+        >
           <div className="max-w-7xl mx-auto text-white grid grid-cols-1 md:grid-cols-3 gap-12">
             {/* Left Column - Image and Social Icons */}
-            <div className="flex flex-col items-center  space-y-6">
+            <div className="flex flex-col items-center space-y-6">
               {/* Profile Image */}
-              <div className="relative">
+              <div ref={avatarRef} className="relative">
                 <Image
                   src={image.avatarImage}
                   alt="Marin Ivošević"
                   width={250}
                   height={250}
-                  className="rounded-full border-4 border-accent"
+                  className="rounded-full border-6 border-accent shadow-glow"
                 />
               </div>
 
               {/* Name */}
-              <h2 className="text-3xl font-bold">Marin Ivošević</h2>
+              <h2 ref={nameRef} className="text-3xl font-bold">Marin Ivošević</h2>
 
               {/* Social Icons */}
-              <div className="flex space-x-4">
+              <div className="flex space-x-4" ref={socialIconsRef}>
                 <a
                   href="https://github.com"
                   className="text-accent hover:text-accent/80 transition-colors"
@@ -153,21 +299,22 @@ export default function Home() {
               </div>
             </div>
 
+
             {/* Right Column - About Me Text */}
             <div className="md:col-span-2">
-              <h2 className="text-4xl font-bold mb-8 text-accent">About Me</h2>
+              <h2 ref={aboutTitleRef} className="text-4xl font-bold mb-8 text-accent">About Me</h2>
               <div className="space-y-4 text-lg">
-                <p>
+                <p ref={el => { aboutTextRefs.current[0] = el }}>
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry&apos;s
                   standard dummy text ever since the 1500s.
                 </p>
-                <p>
+                <p ref={el => { aboutTextRefs.current[1] = el }}>
                   It has survived not only five centuries, but also the leap
                   into electronic typesetting, remaining essentially unchanged.
                   It was popularised in the 1960s.
                 </p>
-                <p>
+                <p ref={el => { aboutTextRefs.current[2] = el }}>
                   With the release of Letraset sheets containing Lorem Ipsum
                   passages, and more recently with desktop publishing software
                   like Aldus PageMaker including versions.
@@ -178,11 +325,14 @@ export default function Home() {
         </section>
 
 
-        <section>
+        <section id="projects">
           <FeaturedProjects />
         </section>
-        <section>
+        <section id="allprojects">
           <AllProjects />
+        </section>
+        <section id="contact">
+          <Contact />
         </section>
       </div>
     </>
