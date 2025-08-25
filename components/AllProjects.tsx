@@ -4,9 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ExternalLink, Github, Calendar, Users, Star } from "lucide-react";
-import ecommerceImg from "@/assets/project-ecommerce.jpg";
-import dashboardImg from "@/assets/project-dashboard.jpg";
-import socialImg from "@/assets/project-social.jpg";
 import * as images from "@/constants/images";
 import { StaticImageData } from "next/image";
 import Image from "next/image";
@@ -17,8 +14,8 @@ interface Project {
     longDescription: string;
     image: StaticImageData;
     technologies: string[];
-    github: string;
-    live: string;
+    github?: string;
+    live?: string;
     year: string;
     status: string;
     teamSize: number;
@@ -28,116 +25,102 @@ interface Project {
 const allProjects: Project[] = [
     {
         id: 1,
-        title: "Social Media App",
-        description: "A modern social networking platform with real-time messaging, user profiles, and content sharing capabilities.",
-        longDescription: "A comprehensive social media platform built with modern web technologies. Features include real-time messaging using WebSockets, advanced user profiles with customizable themes, content sharing with image and video support, and a sophisticated recommendation algorithm.",
-        image: images.avatarImage,
-        technologies: ["React", "Node.js", "MongoDB", "Socket.io"],
-        github: "https://github.com",
-        live: "https://example.com",
+        title: "RiConnect",
+        description: "An app that rewards you for attending and sharing club events, turning your nights out into points, perks, and prizes.",
+        longDescription: "RiConnect is a mobile platform designed for people who love going out, attending concerts, and experiencing nightlife. Event organizers and clubs can easily create and promote their events, while users engage by checking in, taking photos, and sharing their experiences on social media. Every interaction earns users points, which can be redeemed for exclusive perks—such as club coupons, discounted entry, and increased chances of winning giveaways hosted by the same venues. By turning social activity into tangible rewards, RiConnect connects nightlife enthusiasts with clubs in a fun and engaging way, while also giving event organizers a powerful channel to boost visibility and loyalty. It is designed as a Mobile app for users with a admin dashboard on the web.",
+        image: images.RiConnect,
+        technologies: ["React", "AWS", "DynamoDB", "React Native"],
+        github: "https://github.com/kjakopovic/RiHack3.0-RitehRomanEra",
+
         year: "2024",
-        status: "Live",
-        teamSize: 3,
-        highlights: ["Real-time messaging", "Advanced recommendation system", "Mobile-responsive design", "Content moderation tools"]
+        status: "Offline",
+        teamSize: 4,
+        highlights: ["Real-time Giveaway", "Social media integration", "User engagement tracking", "Real-time Leaderboard"]
     },
     {
         id: 2,
-        title: "Task Management Dashboard",
-        description: "A comprehensive productivity dashboard with analytics, team collaboration, and advanced project tracking features.",
-        longDescription: "An enterprise-grade task management solution designed for modern teams. Includes advanced analytics, customizable workflows, time tracking, and integration with popular productivity tools. Built with performance and scalability in mind.",
-        image: images.avatarImage,
-        technologies: ["React", "TypeScript", "PostgreSQL", "Chart.js"],
-        github: "https://github.com",
-        live: "https://example.com",
-        year: "2024",
+        title: "EsperaX Website",
+        description: "Espera X is a digital transformation partner leveraging Dassault Systèmes’ 3DEXPERIENCE platform—CATIA, ENOVIA, DELMIA, SIMULIA—to deliver tailored digital twin and product lifecycle management solutions.",
+        longDescription: "EsperaX is a technology partner specializing in digital transformation through Dassault Systèmes’ 3DEXPERIENCE platform. With expertise in CATIA, ENOVIA, DELMIA, and SIMULIA, EsperaX empowers companies to design, simulate, and manage products across their entire lifecycle. The company focuses on building digital twin solutions, integrating advanced engineering tools, and optimizing collaborative workflows to accelerate innovation. By aligning cutting-edge PLM (Product Lifecycle Management) technologies with client-specific business needs, EsperaX helps organizations in industries such as automotive, aerospace, and manufacturing reduce complexity, improve efficiency, and bring products to market faster.",
+        image: images.EsperaPic,
+        technologies: ["Next.js", "Docker", "Strapi", "MariaDB"],
+
+        live: "https://esperax.com/",
+        year: "2025",
         status: "Live",
-        teamSize: 4,
-        highlights: ["Advanced analytics", "Team collaboration", "Custom workflows", "API integrations"]
+        teamSize: 2,
+        highlights: ["CMS With Strapi", "Responsive and fast layout", "Modern Design"]
     },
     {
         id: 3,
-        title: "E-Commerce Platform",
-        description: "A full-featured online store with payment integration, inventory management, and customer analytics.",
-        longDescription: "A complete e-commerce solution with advanced features for both customers and administrators. Includes secure payment processing, intelligent inventory management, customer behavior analytics, and a powerful admin dashboard.",
-        image: images.avatarImage,
-        technologies: ["Next.js", "Stripe", "Prisma", "Redis"],
-        github: "https://github.com",
-        live: "https://example.com",
-        year: "2023",
-        status: "Live",
+        title: "Urban Pulse",
+        description: "UrbanPulse is a modular smart city project that bridges the gap between citizens and city governors.",
+        longDescription: "UrbanPulse is a modular smart city project that bridges the gap between citizens and city governors. Designed within 48 hours, it supports multiple cities and delivers features to improve daily life through mobile and web applications. ",
+        image: images.UrbanPulse,
+        technologies: ["Next.js", "React Native", "AWS", "FastAPI"],
+        github: "https://github.com/kjakopovic/Unihack-RWS",
+
+        year: "2024",
+        status: "Offline",
         teamSize: 5,
-        highlights: ["Payment processing", "Inventory management", "Customer analytics", "Admin dashboard"]
+        highlights: ["News and Ticketing System", "Specialized City Map", " AI-Powered Bill Predictor", "Image Classifier"]
     },
     {
         id: 4,
-        title: "Weather Forecast App",
-        description: "A beautiful weather application with detailed forecasts, weather maps, and location-based alerts.",
-        longDescription: "An intuitive weather application providing accurate forecasts and weather insights. Features beautiful visualizations, interactive weather maps, and personalized weather alerts based on user preferences and location.",
+        title: "Aitac Website",
+        description: "Developed the AITAC website, a modern, responsive platform showcasing the company’s products and services, optimized for performance, usability, and seamless user experience.",
+        longDescription: "The AITAC website was developed as a comprehensive digital presence for the company, highlighting its products, solutions, and services in an engaging and user-friendly format. The site features a responsive design for mobile and desktop, intuitive navigation, and fast loading performance. Key functionalities include interactive product showcases, easy contact options, and integration with the company’s digital channels. The development focused on delivering a modern, scalable, and maintainable codebase, ensuring a seamless user experience and effective communication of AITAC'S brand values.",
         image: images.avatarImage, // Reusing image for demo
-        technologies: ["React", "OpenWeather API", "Leaflet", "PWA"],
-        github: "https://github.com",
-        live: "https://example.com",
-        year: "2023",
-        status: "Live",
-        teamSize: 1,
-        highlights: ["Real-time weather data", "Interactive maps", "PWA support", "Location-based alerts"]
+        technologies: ["Next.js", "Docker", "Strapi", "MariaDB"],
+
+        live: "https://aitac.nl",
+        year: "2025",
+        status: "In Development",
+        teamSize: 2,
+        highlights: ["CMS With Strapi", "Responsive and fast layout", "Modern Design"]
     },
     {
         id: 5,
-        title: "Fitness Tracker",
-        description: "A comprehensive fitness tracking application with workout plans, progress monitoring, and social features.",
-        longDescription: "A complete fitness companion app that helps users track their workouts, monitor progress, and connect with other fitness enthusiasts. Includes custom workout plans, nutrition tracking, and social features for motivation.",
-        image: images.avatarImage, // Reusing image for demo
-        technologies: ["React Native", "Firebase", "Charts", "ML Kit"],
-        github: "https://github.com",
-        live: "https://example.com",
+        title: "RiMatch",
+        description: "RiMatch is a dating application which helps users find connections by creating profiles, matching them with others based on preferences, and enabling communication through chat.",
+        longDescription: "Looking to expand your social circle? RiMatch takes the legwork out of meeting new people. Create a detailed profile highlighting your interests, and our smart algorithm will connect you with compatible matches based on your preferences, including location if you choose. Chat with your matches through text, images, or even voice messages, and see if a spark ignites! The experience is seamless on both web and mobile (iOS and Android) with a user-friendly interface and features like swipe gestures for easy interaction.",
+        image: images.Rimatch, // Reusing image for demo
+        technologies: ["React Native", "React", "MongoDB", "Spring boot", "AWS"],
+        github: "https://github.com/RitehWebTeam/infobip-rimatch",
+
         year: "2023",
-        status: "Development",
-        teamSize: 2,
-        highlights: ["Workout tracking", "Progress analytics", "Social features", "Nutrition monitoring"]
+        status: "Offline",
+        teamSize: 6,
+        highlights: ["Profile creation", "Geo Location based matching", "Chat functionality", "Cross-platform support"]
     },
     {
         id: 6,
-        title: "Learning Management System",
+        title: "Aitac AI",
         description: "An educational platform for online courses with interactive content and progress tracking.",
         longDescription: "A comprehensive LMS designed for educational institutions and corporate training. Features interactive course content, video streaming, assignment management, and detailed progress tracking for both students and instructors.",
         image: images.avatarImage, // Reusing image for demo
-        technologies: ["Vue.js", "Laravel", "MySQL", "WebRTC"],
-        github: "https://github.com",
-        live: "https://example.com",
-        year: "2022",
-        status: "Live",
-        teamSize: 6,
-        highlights: ["Interactive content", "Video streaming", "Assignment system", "Progress tracking"]
+        technologies: ["Next.js", "FastAPI", "Milvus", "Ollama", "Langchain", "Python"],
+
+        year: "2025",
+        status: "In development",
+        teamSize: 1,
+        highlights: ["Generative AI", "Personalized learning", "Document analysis", "Local Knowledge base"]
     },
     {
         id: 7,
-        title: "Crypto Portfolio Tracker",
-        description: "A cryptocurrency portfolio management tool with real-time prices and advanced analytics.",
-        longDescription: "A sophisticated crypto portfolio tracker that helps users manage their investments. Features real-time price tracking, portfolio analytics, profit/loss calculations, and market insights to make informed trading decisions.",
-        image: images.avatarImage, // Reusing image for demo
-        technologies: ["React", "CoinGecko API", "D3.js", "WebSocket"],
-        github: "https://github.com",
-        live: "https://example.com",
-        year: "2022",
-        status: "Live",
-        teamSize: 2,
-        highlights: ["Real-time prices", "Portfolio analytics", "Market insights", "Trading signals"]
+        title: "AI Test Grading application",
+        description: "An AI-powered web app that automatically grades programming exams, saving professors time while allowing precise manual adjustments.",
+        longDescription: "This web app leverages generative AI to instantly grade programming exams, evaluating the logic and correctness of student submissions while ignoring minor syntax errors. Professors can create courses, assign exams, and review AI-assigned scores, with the flexibility to manually adjust points when needed. By automating the grading process, the app streamlines workflows and provides an efficient, modern solution for educational institutions.",
+        image: images.zavrsni, // Reusing image for demo
+        technologies: ["Next.js", "Laravel", "MySQL", "Tailwind"],
+        github: "https://github.com/marinivosevic/chatgptExamApp",
+
+        year: "2025",
+        status: "Private use",
+        teamSize: 1,
+        highlights: ["Automated grading", "Manual adjustments", "AI-powered insights"]
     },
-    {
-        id: 8,
-        title: "Recipe Sharing Platform",
-        description: "A social platform for sharing and discovering recipes with rating and review systems.",
-        longDescription: "A vibrant community platform where food enthusiasts can share their favorite recipes, discover new dishes, and connect with other cooks. Features recipe rating, reviews, meal planning, and shopping list generation.",
-        image: images.avatarImage, // Reusing image for demo
-        technologies: ["Svelte", "Node.js", "MongoDB", "Cloudinary"],
-        github: "https://github.com",
-        live: "https://example.com",
-        year: "2022",
-        status: "Live",
-        teamSize: 3,
-        highlights: ["Recipe sharing", "Community features", "Meal planning", "Shopping lists"]
-    }
+
 ];
 
 const getTechIcon = (tech: string) => {
@@ -153,22 +136,20 @@ const getTechIcon = (tech: string) => {
         "Stripe": "bg-purple-600/10 text-purple-500 border-purple-500/20",
         "Prisma": "bg-teal-500/10 text-teal-400 border-teal-400/20",
         "Redis": "bg-red-500/10 text-red-400 border-red-400/20",
-        "OpenWeather API": "bg-yellow-500/10 text-yellow-400 border-yellow-400/20",
-        "Leaflet": "bg-green-500/10 text-green-400 border-green-400/20",
-        "PWA": "bg-purple-500/10 text-purple-400 border-purple-400/20",
+        "AWS": "bg-yellow-500/10 text-yellow-400 border-yellow-400/20",
+        "Docker": "bg-blue-500/10 text-blue-400 border-blue-400/20",
+        "Strapi": "bg-purple-500/10 text-purple-400 border-purple-400/20",
+        "MariaDB": "bg-blue-700/10 text-blue-600 border-blue-600/20",
+        "FastAPI": "bg-teal-500/10 text-teal-400 border-teal-400/20",
         "React Native": "bg-blue-500/10 text-blue-400 border-blue-400/20",
-        "Firebase": "bg-orange-500/10 text-orange-400 border-orange-400/20",
-        "Charts": "bg-teal-500/10 text-teal-400 border-teal-400/20",
-        "ML Kit": "bg-red-500/10 text-red-400 border-red-400/20",
-        "Vue.js": "bg-green-500/10 text-green-400 border-green-400/20",
+        "DynamoDB": "bg-yellow-500/10 text-yellow-400 border-yellow-400/20",
         "Laravel": "bg-red-500/10 text-red-400 border-red-400/20",
-        "MySQL": "bg-blue-500/10 text-blue-400 border-blue-400/20",
-        "WebRTC": "bg-purple-500/10 text-purple-400 border-purple-400/20",
-        "CoinGecko API": "bg-yellow-500/10 text-yellow-400 border-yellow-400/20",
-        "D3.js": "bg-orange-500/10 text-orange-400 border-orange-400/20",
-        "WebSocket": "bg-purple-500/10 text-purple-400 border-purple-400/20",
-        "Svelte": "bg-orange-500/10 text-orange-400 border-orange-400/20",
-        "Cloudinary": "bg-blue-500/10 text-blue-400 border-blue-400/20"
+        "MySQL": "bg-blue-700/10 text-blue-600 border-blue-600/20",
+        "Tailwind": "bg-teal-500/10 text-teal-400 border-teal-400/20",
+        "Milvus": "bg-purple-500/10 text-purple-400 border-purple-400/20",
+        "Ollama": "bg-purple-500/10 text-purple-400 border-purple-400/20",
+        "Langchain": "bg-purple-500/10 text-purple-400 border-purple-400/20",
+        "Python": "bg-blue-500/10 text-blue-400 border-blue-400/20"
     };
 
     return techColors[tech] || "bg-gray-500/10 text-gray-400 border-gray-400/20";
@@ -346,7 +327,7 @@ export default function AllProjects() {
                                         </div>
 
                                         <div className="flex gap-3 pt-4">
-                                            <Button
+                                            {selectedProject.live && (<Button
                                                 className="bg-accent text-black hover:bg-[hsl(179 100% 85%)]"
                                                 asChild
                                             >
@@ -354,8 +335,8 @@ export default function AllProjects() {
                                                     <ExternalLink className="w-4 h-4 mr-2" />
                                                     Live Demo
                                                 </a>
-                                            </Button>
-                                            <Button
+                                            </Button>)}
+                                            {selectedProject.github && (<Button
                                                 variant="outline"
                                                 className="border-accent/50 text-accent hover:bg-accent hover:text-black"
                                                 asChild
@@ -364,7 +345,7 @@ export default function AllProjects() {
                                                     <Github className="w-4 h-4 mr-2" />
                                                     Source Code
                                                 </a>
-                                            </Button>
+                                            </Button>)}
                                         </div>
                                     </div>
                                 </div>

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Contact = () => {
     return (
-        <section className="min-h-screen py-20 px-4 flex items-center">
+        <section className="min-h-screen py-20 px-4 flex items-center ">
             <div className="max-w-4xl mx-auto w-full">
                 <div className="text-center animate-fade-in-up ">
                     <h2 className="text-4xl font-bold mb-8 text-accent">Get In Touch</h2>
@@ -11,7 +11,8 @@ const Contact = () => {
                         Feel free to reach out for collaboration or just to say hello!
                     </p>
 
-                    <div className="flex justify-center space-x-16">
+                    <div className="flex flex-col items-center space-y-8 md:flex-row md:space-y-0 md:space-x-16 justify-center">
+
                         <Link
                             href="mailto:marin.ivosevic91@gmail.com"
                             className="flex flex-col items-center space-y-3 p-6 rounded-lg bg-[hsl(240,10%,8%)] border border-accent/20 hover:border-accent/40 transition-all duration-300 hover:scale-105 shadow-glow group animate-fade-in-up"
@@ -52,7 +53,7 @@ const Contact = () => {
                             className="flex flex-col items-center space-y-3 p-6 rounded-lg bg-[hsl(240,10%,8%)] border border-accent/20 hover:border-accent/40 transition-all duration-300 hover:scale-105 shadow-glow group animate-fade-in-up"
                             style={{ animationDelay: "0.4s" }}
                         >
-                            <div className="p-4 rounded-full bg-accent/10 group-hover:bg-accent/20 transition-colors duration-300">
+                            <div className="p-4 rounded-full bg-accent/10 group-hover:bg-accent/20 transition-colors duration-300 ">
                                 <Linkedin className="h-8 w-8 text-accent" />
                             </div>
                             <div className="text-center">

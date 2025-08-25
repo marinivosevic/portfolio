@@ -8,33 +8,33 @@ import * as images from "@/constants/images";
 const projects = [
     {
         id: 1,
-        title: "Social Media App",
-        description: "A modern social networking platform with real-time messaging, user profiles, and content sharing capabilities.",
-        image: images.avatarImage,
-        technologies: ["React", "Node.js", "MongoDB", "Socket.io"],
+        title: "RiConnect",
+        description: "An app that rewards you for attending and sharing club events, turning your nights out into points, perks, and prizes.",
+        image: images.RiConnect,
+        technologies: ["React", "AWS", "DynamoDB", "React Native"],
         featured: false,
-        github: "https://github.com",
-        live: "https://example.com"
+        github: "https://github.com/kjakopovic/RiHack3.0-RitehRomanEra",
+
     },
     {
         id: 2,
-        title: "Task Management Dashboard",
-        description: "A comprehensive productivity dashboard with analytics, team collaboration, and advanced project tracking features.",
-        image: images.avatarImage,
-        technologies: ["React", "TypeScript", "PostgreSQL", "Chart.js"],
+        title: "EsperaX Website",
+        description: "Espera X is a digital transformation partner leveraging Dassault Systèmes’ 3DEXPERIENCE platform—CATIA, ENOVIA, DELMIA, SIMULIA—to deliver tailored digital twin and product lifecycle management solutions.",
+        image: images.EsperaPic,
+        technologies: ["Next.js", "Docker", "Strapi", "MariaDB"],
         featured: true, // This will be elevated (podium winner)
-        github: "https://github.com",
-        live: "https://example.com"
+
+        live: "https://esperax.com/"
     },
     {
         id: 3,
-        title: "E-Commerce Platform",
-        description: "A full-featured online store with payment integration, inventory management, and customer analytics.",
-        image: images.avatarImage,
-        technologies: ["Next.js", "Stripe", "Prisma", "Redis"],
+        title: "Urban Pulse",
+        description: "UrbanPulse is a modular smart city project that bridges the gap between citizens and city governors.",
+        image: images.UrbanPulse,
+        technologies: ["Next.js", "React Native", "AWS", "FastAPI"],
         featured: false,
-        github: "https://github.com",
-        live: "https://example.com"
+        github: "https://github.com/kjakopovic/Unihack-RWS",
+
     }
 ];
 
@@ -50,7 +50,14 @@ const getTechIcon = (tech: string) => {
         "Next.js": "bg-gray-500/10 text-gray-300 border-gray-400/20",
         "Stripe": "bg-purple-600/10 text-purple-500 border-purple-500/20",
         "Prisma": "bg-teal-500/10 text-teal-400 border-teal-400/20",
-        "Redis": "bg-red-500/10 text-red-400 border-red-400/20"
+        "Redis": "bg-red-500/10 text-red-400 border-red-400/20",
+        "AWS": "bg-yellow-500/10 text-yellow-400 border-yellow-400/20",
+        "Docker": "bg-blue-500/10 text-blue-400 border-blue-400/20",
+        "Strapi": "bg-purple-500/10 text-purple-400 border-purple-400/20",
+        "MariaDB": "bg-blue-700/10 text-blue-600 border-blue-600/20",
+        "FastAPI": "bg-teal-500/10 text-teal-400 border-teal-400/20",
+        "React Native": "bg-blue-500/10 text-blue-400 border-blue-400/20",
+        "DynamoDB": "bg-yellow-500/10 text-yellow-400 border-yellow-400/20"
     };
 
     return techColors[tech] || "bg-gray-500/10 text-gray-400 border-gray-400/20";

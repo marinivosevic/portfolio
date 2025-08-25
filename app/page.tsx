@@ -12,13 +12,16 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 declare global {
   interface Window {
-    VANTA: any;
+    VANTA: {
+      DOTS?: (options: unknown) => unknown;
+      [key: string]: unknown;
+    };
   }
 }
 gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   const vantaRef = useRef<HTMLDivElement>(null);
-  const vantaEffect = useRef<any>(null);
+  const vantaEffect = useRef<unknown>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const leftContentRef = useRef<HTMLDivElement>(null);
   const rightImageRef = useRef<HTMLDivElement>(null);
@@ -54,7 +57,9 @@ export default function Home() {
     }, 200);
 
     return () => {
-      if (vantaEffect.current) vantaEffect.current.destroy();
+      if (vantaEffect.current && typeof (vantaEffect.current as { destroy?: () => void }).destroy === "function") {
+        (vantaEffect.current as { destroy: () => void }).destroy();
+      }
       clearInterval(interval);
     };
   }, []);
@@ -208,11 +213,13 @@ export default function Home() {
                 <h1 className="text-accent text-lg">Software Engineer</h1>
                 <h1 className="text-6xl font-bold">Marin Ivošević</h1>
                 <p className="text-lg text-gray-300 mt-4">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit...
+                  Software developer passionate about building innovative solutions, exploring new technologies, and capturing life through photography and endurance sports.
                 </p>
-                <button className="mt-8 px-6 py-2 bg-accent shadow-glow text-black rounded-full hover:bg-accent/80 transition-colors duration-300">
-                  Contact Me
-                </button>
+                <a href="#contact">
+                  <button className="mt-8 px-6 py-2 bg-accent shadow-glow text-black rounded-full hover:bg-accent/80 transition-colors duration-300">
+                    Contact Me
+                  </button>
+                </a>
               </div>
 
               {/* Right Image */}
@@ -255,7 +262,7 @@ export default function Home() {
               {/* Social Icons */}
               <div className="flex space-x-4" ref={socialIconsRef}>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/marinivosevic"
                   className="text-accent hover:text-accent/80 transition-colors"
                 >
                   <svg
@@ -269,7 +276,7 @@ export default function Home() {
                   </svg>
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/marin-ivo%C5%A1evi%C4%87-634064269/"
                   className="text-accent hover:text-accent/80 transition-colors"
                 >
                   <svg
@@ -283,7 +290,7 @@ export default function Home() {
                   </svg>
                 </a>
                 <a
-                  href="mailto:your@email.com"
+                  href="mailto:marin.ivosevic91@gmail.com"
                   className="text-accent hover:text-accent/80 transition-colors"
                 >
                   <svg
@@ -305,20 +312,12 @@ export default function Home() {
               <h2 ref={aboutTitleRef} className="text-4xl font-bold mb-8 text-accent">About Me</h2>
               <div className="space-y-4 text-lg">
                 <p ref={el => { aboutTextRefs.current[0] = el }}>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry&apos;s
-                  standard dummy text ever since the 1500s.
+                  I am Marin Ivošević, born in Rijeka, Croatia, and currently in my first year of Master&apos;s studies. I work at AITAC d.o.o., where I actively contribute to software development projects and continuously expand my technical skills. My passion lies in creating innovative software solutions, exploring a wide range of technologies, and gaining experience with new frameworks and development methodologies. I am highly motivated to learn, adapt, and tackle challenging problems, always striving to grow both personally and professionally.
                 </p>
                 <p ref={el => { aboutTextRefs.current[1] = el }}>
-                  It has survived not only five centuries, but also the leap
-                  into electronic typesetting, remaining essentially unchanged.
-                  It was popularised in the 1960s.
+                  Beyond coding, I have a wide range of hobbies and interests that keep me balanced and inspired. I am an amateur photographer specializing in sports, equestrian, and landscape photography, capturing moments that combine motion, emotion, and natural beauty. I am also passionate about endurance sports such as running and cycling, pushing my limits while staying healthy and focused. These pursuits fuel my creativity, discipline, and attention to detail—qualities I bring to every project I work on.
                 </p>
-                <p ref={el => { aboutTextRefs.current[2] = el }}>
-                  With the release of Letraset sheets containing Lorem Ipsum
-                  passages, and more recently with desktop publishing software
-                  like Aldus PageMaker including versions.
-                </p>
+
               </div>
             </div>
           </div>
@@ -328,7 +327,7 @@ export default function Home() {
         <section id="projects">
           <FeaturedProjects />
         </section>
-        <section id="allprojects">
+        <section id="allProjects">
           <AllProjects />
         </section>
         <section id="contact">
