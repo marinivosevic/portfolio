@@ -10,7 +10,7 @@ const projects = [
         id: 1,
         title: "RiConnect",
         description: "An app that rewards you for attending and sharing club events, turning your nights out into points, perks, and prizes.",
-        image: images.RiConnect,
+        image: "/brave_Y3IHdJAWAt.png",
         technologies: ["React", "AWS", "DynamoDB", "React Native"],
         featured: false,
         github: "https://github.com/kjakopovic/RiHack3.0-RitehRomanEra",
@@ -20,7 +20,7 @@ const projects = [
         id: 2,
         title: "EsperaX Website",
         description: "Espera X is a digital transformation partner leveraging Dassault Systèmes’ 3DEXPERIENCE platform—CATIA, ENOVIA, DELMIA, SIMULIA—to deliver tailored digital twin and product lifecycle management solutions.",
-        image: images.EsperaPic,
+        image: "/brave_TftNXaHefF.png",
         technologies: ["Next.js", "Docker", "Strapi", "MariaDB"],
         featured: true, // This will be elevated (podium winner)
 
@@ -30,7 +30,7 @@ const projects = [
         id: 3,
         title: "Urban Pulse",
         description: "UrbanPulse is a modular smart city project that bridges the gap between citizens and city governors.",
-        image: images.UrbanPulse,
+        image: "/brave_eXOnWB8L1h.png",
         technologies: ["Next.js", "React Native", "AWS", "FastAPI"],
         featured: false,
         github: "https://github.com/kjakopovic/Unihack-RWS",
@@ -107,6 +107,8 @@ export default function FeaturedProjects() {
                                         src={project.image}
                                         alt={project.title}
                                         className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                                        width={400}
+                                        height={300}
                                     />
                                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                                         <Button

@@ -12,7 +12,7 @@ interface Project {
     title: string;
     description: string;
     longDescription: string;
-    image: StaticImageData;
+    image: StaticImageData | string;
     technologies: string[];
     github?: string;
     live?: string;
@@ -28,7 +28,7 @@ const allProjects: Project[] = [
         title: "RiConnect",
         description: "An app that rewards you for attending and sharing club events, turning your nights out into points, perks, and prizes.",
         longDescription: "RiConnect is a mobile platform designed for people who love going out, attending concerts, and experiencing nightlife. Event organizers and clubs can easily create and promote their events, while users engage by checking in, taking photos, and sharing their experiences on social media. Every interaction earns users points, which can be redeemed for exclusive perks—such as club coupons, discounted entry, and increased chances of winning giveaways hosted by the same venues. By turning social activity into tangible rewards, RiConnect connects nightlife enthusiasts with clubs in a fun and engaging way, while also giving event organizers a powerful channel to boost visibility and loyalty. It is designed as a Mobile app for users with a admin dashboard on the web.",
-        image: images.RiConnect,
+        image: "/brave_Y3IHdJAWAt.png",
         technologies: ["React", "AWS", "DynamoDB", "React Native"],
         github: "https://github.com/kjakopovic/RiHack3.0-RitehRomanEra",
 
@@ -42,7 +42,7 @@ const allProjects: Project[] = [
         title: "EsperaX Website",
         description: "Espera X is a digital transformation partner leveraging Dassault Systèmes’ 3DEXPERIENCE platform—CATIA, ENOVIA, DELMIA, SIMULIA—to deliver tailored digital twin and product lifecycle management solutions.",
         longDescription: "EsperaX is a technology partner specializing in digital transformation through Dassault Systèmes’ 3DEXPERIENCE platform. With expertise in CATIA, ENOVIA, DELMIA, and SIMULIA, EsperaX empowers companies to design, simulate, and manage products across their entire lifecycle. The company focuses on building digital twin solutions, integrating advanced engineering tools, and optimizing collaborative workflows to accelerate innovation. By aligning cutting-edge PLM (Product Lifecycle Management) technologies with client-specific business needs, EsperaX helps organizations in industries such as automotive, aerospace, and manufacturing reduce complexity, improve efficiency, and bring products to market faster.",
-        image: images.EsperaPic,
+        image: "/brave_TftNXaHefF.png",
         technologies: ["Next.js", "Docker", "Strapi", "MariaDB"],
 
         live: "https://esperax.com/",
@@ -56,7 +56,7 @@ const allProjects: Project[] = [
         title: "Urban Pulse",
         description: "UrbanPulse is a modular smart city project that bridges the gap between citizens and city governors.",
         longDescription: "UrbanPulse is a modular smart city project that bridges the gap between citizens and city governors. Designed within 48 hours, it supports multiple cities and delivers features to improve daily life through mobile and web applications. ",
-        image: images.UrbanPulse,
+        image: "/brave_eXOnWB8L1h.png",
         technologies: ["Next.js", "React Native", "AWS", "FastAPI"],
         github: "https://github.com/kjakopovic/Unihack-RWS",
 
@@ -84,7 +84,7 @@ const allProjects: Project[] = [
         title: "RiMatch",
         description: "RiMatch is a dating application which helps users find connections by creating profiles, matching them with others based on preferences, and enabling communication through chat.",
         longDescription: "Looking to expand your social circle? RiMatch takes the legwork out of meeting new people. Create a detailed profile highlighting your interests, and our smart algorithm will connect you with compatible matches based on your preferences, including location if you choose. Chat with your matches through text, images, or even voice messages, and see if a spark ignites! The experience is seamless on both web and mobile (iOS and Android) with a user-friendly interface and features like swipe gestures for easy interaction.",
-        image: images.Rimatch, // Reusing image for demo
+        image: "/vlc_4Z12EYMCHp.png", // Reusing image for demo
         technologies: ["React Native", "React", "MongoDB", "Spring boot", "AWS"],
         github: "https://github.com/RitehWebTeam/infobip-rimatch",
 
@@ -111,7 +111,7 @@ const allProjects: Project[] = [
         title: "AI Test Grading application",
         description: "An AI-powered web app that automatically grades programming exams, saving professors time while allowing precise manual adjustments.",
         longDescription: "This web app leverages generative AI to instantly grade programming exams, evaluating the logic and correctness of student submissions while ignoring minor syntax errors. Professors can create courses, assign exams, and review AI-assigned scores, with the flexibility to manually adjust points when needed. By automating the grading process, the app streamlines workflows and provides an efficient, modern solution for educational institutions.",
-        image: images.zavrsni, // Reusing image for demo
+        image: "/Acrobat_nVZCCoP68a.png", // Reusing image for demo
         technologies: ["Next.js", "Laravel", "MySQL", "Tailwind"],
         github: "https://github.com/marinivosevic/chatgptExamApp",
 
@@ -191,6 +191,8 @@ export default function AllProjects() {
                                     src={project.image}
                                     alt={project.title}
                                     className="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-110"
+                                    width={400}
+                                    height={300}
                                 />
                                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                     <Button
