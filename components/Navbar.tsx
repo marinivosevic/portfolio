@@ -6,7 +6,7 @@ import Link from 'next/link';
 const Navbar = () => {
   return (
     <nav className='fixed top-0 left-0 w-full h-1/8 bg-background  z-50'>
-      <div className='h-full  mx-auto px-4 md:px-16 flex justify-between items-center'>
+      <div className='h-full  mx-auto  md:px-16 flex justify-center md:justify-between items-center'>
         {/* Logo/Name Section */}
         <div className="flex items-center gap-4 text-white">
           <Image
